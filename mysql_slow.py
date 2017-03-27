@@ -35,8 +35,8 @@ WHERE  (sid = '31');
 
 METADATA = re.compile(
     b'# Time: '
-    b'(?P<year>[0-9]{2})(?P<month>[0-9]{2})(?P<day>[0-9]{2}) '
-    b'(?P<hours>[0-9]{2}):(?P<minutes>[0-9]{2}):(?P<seconds>[0-9]{2})\n'
+    b'(?P<year>[0-9]{2})(?P<month>[0-9]{2})(?P<day>[0-9]{2}) {1,2}'
+    b'(?P<hours>[0-9]{1,2}):(?P<minutes>[0-9]{2}):(?P<seconds>[0-9]{2})\n'
     b'# User@Host: .*\n'
     b'# Schema: (?P<schema>[a-z]+)[ \t]+'
     b'Last_errno: (?P<last_errno>[0-9]+)[ \t]+'
