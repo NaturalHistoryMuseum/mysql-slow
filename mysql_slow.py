@@ -10,7 +10,6 @@ import sys
 from datetime import datetime
 
 
-# TODO How to handle blocks with no 'Time' line
 """
 # Time: 160311 21:42:01
 # User@Host: vbranteu[vbranteu] @ sp-app-1.nhm.ac.uk [157.140.2.182]  Id: 37056517
@@ -54,7 +53,9 @@ SlowSQL = collections.namedtuple(
 def parse_match(match):
     datetime_values = (int(v) for v in match.groups()[:6])
     # Years are all after 2000 and are in YY form
-    dt = datetime(*itertools.chain([2000 + next(datetime_values)], datetime_values))
+    dt = datetime(
+        *itertools.chain([2000 + next(datetime_values)], datetime_values)
+    )
     return SlowSQL(
         dt,
         match.group('schema').decode('ascii'),
