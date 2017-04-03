@@ -1,2 +1,7 @@
-*log
-*csv
+.DS_Store
+*pyc
+0_data
+1_uncompress
+2_csv
+3_rds
+4_visualise
