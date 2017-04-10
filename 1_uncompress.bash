@@ -1,6 +1,7 @@
-for logfile in slow-sp-data-1.log slow-sp-data-2.log; do
-    if [ -f 0_data/$logfile ]; then
-        rm 0_data/$logfile
+for archive in 0_data/*gz; do
+    logfile=${archive%.*}
+    if [ -f $logfile ]; then
+        rm $logfile
     fi
-    gunzip -f 0_data/$logfile.gz
+    gunzip $archive
 done
