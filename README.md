@@ -30,12 +30,12 @@ Rscript --slave --no-save --no-restore-history -e "install.packages('xts')"
     `sp-data-2`
 
     ```
-    rm mysql-slow-`hostname`.log 
+    rm mysql-slow-`hostname`.log
     ```
 
 ## Run the analysis
 
 ```
-somerset all
+somerset.py -R && somerset.py all
 open 4_visualise/*png
 ```
