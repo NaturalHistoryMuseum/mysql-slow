@@ -5,6 +5,28 @@ input.dir <- '3_rds'
 output.dir <- '4_visualise'
 
 
+
+important.date <- data.frame(
+    Date=as.POSIXct(as.Date(c(
+        '2015-10-10',
+        '2016-06-23',
+        '2017-03-13',
+        '2017-03-29'
+    ))),
+    Label=c(
+        'A few 2.8.0.x releases around here',
+        'Release 2.9.1',
+        'Interactions to sp-data-1',
+        'Disable stats for interactions'
+    ),
+    Line=c(
+        0,
+        0,
+        1,
+        0
+    )
+)
+
 FormatThousands <- function(v) {
     return (format(v, big.mark=','))
 }
@@ -15,13 +37,6 @@ FormatN <- function(v) {
 
 PlotRawData <- function(host, log, ...) {
     # Raw datat, highlighting queries on certain schemas
-    important.date <- as.POSIXct(
-        as.Date(c(
-            Something='2016-06-23',
-            'Release 2.9.1'='2015-10-10',
-            'Interactions to sp-data-1'='2017-03-29')
-    ))
-
     col <- rep('#00000044', nrow(log))
     col['hostsmyspeciesin' == log$schema] <- '#ff00ff'
     col['mysql' == log$schema] <- '#0080ff'
@@ -32,8 +47,8 @@ PlotRawData <- function(host, log, ...) {
         main=paste0(host, ' slow sql queries ', FormatN(nrow(log))),
         ...
     )
-    abline(v=important.date)
-    mtext(text=format(important.date, format='%Y-%m-%d'), at=important.date)
+    abline(v=important.date$Date)
+    mtext(text=important.date$Label, at=important.date$Date, line=important.date$Line)
 }
 
 PlotTimeOfDayDistribution <- function(host, log, threshold=0, ...) {
@@ -73,8 +88,15 @@ PlotSlowest <- function(host, log, ...) {
     par(mfrow=c(3, 1))
     ylim <- range(ts)
     plot(daily, main=paste0('Daily', FormatN(nrow(daily))), ylim=ylim)
+    abline(v=important.date$Date)
+    mtext(text=important.date$Label, at=important.date$Date, line=important.date$Line)
+
     plot(weekly, main=paste0('Weekly', FormatN(nrow(weekly))), ylim=ylim)
+    abline(v=important.date$Date)
+
     plot(monthly, main=paste0('Monthly', FormatN(nrow(monthly))), ylim=ylim)
+    abline(v=important.date$Date)
+
     title(main=paste0('Slowest logs for ', host), outer=TRUE)
 }
 
