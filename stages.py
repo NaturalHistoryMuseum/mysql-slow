@@ -1,6 +1,7 @@
 bash = '/bin/bash'
 python = '/Users/lawh/Envs/mysql-slow/bin/python3'
-R = '/usr/local/bin/Rscript'
+R = '/Users/lawh/local/R-3.3.3/bin/Rscript'
+
 
 STAGES = [
     ('1', bash,    '1_uncompress.bash'),
