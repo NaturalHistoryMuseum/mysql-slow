@@ -36,7 +36,7 @@ FormatN <- function(v) {
 }
 
 PlotRawData <- function(host, log, ...) {
-    # Raw datat, highlighting queries on certain schemas
+    # Raw data, highlighting queries on certain schemas
     col <- rep('#00000044', nrow(log))
     col['hostsmyspeciesin' == log$schema] <- '#ff00ff'
     col['mysql' == log$schema] <- '#0080ff'
