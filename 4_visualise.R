@@ -68,7 +68,7 @@ PlotTimeOfDayDistribution <- function(host, log, threshold=0, ...) {
     }
     hour <- as.numeric(substr(as.character(log$datetime), 12, 13))
     minute <- as.numeric(substr(as.character(log$datetime), 15, 16))
-    t <- hour + minute/60
+    t <- hour + minute / 60
     plot(density(t), xlim=c(0, 24), main=main)
 
     rug(t)
