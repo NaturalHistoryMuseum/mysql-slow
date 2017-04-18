@@ -35,7 +35,9 @@ Rscript --slave --no-save --no-restore-history -e "install.packages('xts')"
     scp sp-data-2:/home/lawh/mysql-slow-sp-data-2.log.gz 0_data
     ```
 
-3. `ssh` to `sp-data-1` and `sp-data-2` and remove the compressed files
+3. Remove the compressed files from both `sp-data-1` and `sp-data-2`
+
+    `ssh` to each server and run
 
     ```
     rm mysql-slow-`hostname`.log
@@ -43,7 +45,10 @@ Rscript --slave --no-save --no-restore-history -e "install.packages('xts')"
 
 4. Run the pipeline and view the results
 
+    On your workstation
+
     ```
+    workon mysql-slow
     somerset.py -R && somerset.py all
     open 4_visualise/*png
     ```
