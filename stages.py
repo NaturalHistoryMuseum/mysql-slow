@@ -1,3 +1,5 @@
+import socket
+
 bash = '/bin/bash'
 
 if socket.gethostname().lower().startswith('lscimacc02s44bjfvh8'):
