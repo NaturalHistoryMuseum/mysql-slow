@@ -1,6 +1,12 @@
 bash = '/bin/bash'
-python = '/Users/lawh/Envs/mysql-slow/bin/python3'
-R = '/Users/lawh/local/R-3.3.3/bin/Rscript'
+
+if socket.gethostname().lower().startswith('lscimacc02s44bjfvh8'):
+    # Lawrence's Mac
+    python = '/Users/lawh/Envs/mysql-slow/bin/python3'
+    R = '/Users/lawh/local/R-3.3.3/bin/Rscript'
+else:
+    python = '/usr/bin/python3'
+    R = '/usr/bin/R'
 
 
 STAGES = [
