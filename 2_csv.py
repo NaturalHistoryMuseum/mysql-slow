@@ -14,6 +14,8 @@ OUTPUT_DIR = Path(Path(__file__).stem)
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+# A regular expression to extract information from logfiles with data in the
+# form:
 """
 # Time: 160311 21:42:01
 # User@Host: vbranteu[vbranteu] @ sp-app-1.nhm.ac.uk [157.140.2.182]  Id: 37056517
@@ -65,8 +67,7 @@ def parse_match(match):
         match.group('schema').decode('ascii'),
         int(match.group('last_errno')),
         int(match.group('killed')),
-        float(match.group('seconds_elapsed')),
-        # match.group('query')
+        float(match.group('seconds_elapsed'))
     )
 
 
@@ -75,8 +76,9 @@ if __name__ == '__main__':
         csv = OUTPUT_DIR.joinpath(log.with_suffix('.csv').name)
         print(f'Processing [{log}] to [{csv}]')
         with log.open('rb') as infile, csv.open('w') as outfile:
-            # Headers
+            # Print CSV columns headers
             print(','.join(SlowSQL._fields), file=outfile)
+            # Open a memory-mapped view of the log file and print results
             with mmap.mmap(infile.fileno(), length=0, access=mmap.ACCESS_READ) as data:
                 for res in map(parse_match, METADATA.finditer(data)):
                     print(','.join(map(str, res)), file=outfile)
