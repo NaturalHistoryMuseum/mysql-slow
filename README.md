@@ -13,6 +13,8 @@ pip install -r requirements.pip
 Rscript --slave --no-save --no-restore-history -e "install.packages('xts')"
 ```
 
+Set the locations of the `python3` and `Rscript` binaries in `stages.py`.
+
 ## Run the analysis
 
 1. Compress `mysql-slow` logs on `sp-data-1` and `sp-data-2`.
