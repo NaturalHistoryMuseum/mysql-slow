@@ -23,7 +23,7 @@ Set the locations of the `python3` and `Rscript` binaries in `stages.py`.
 
     ```
     sudo cp /var/log/mysql/mysql-slow.log . && \
-        sudo chown lawh:lawh mysql-slow.log && \
+        sudo chown `id --user --name`:`id --group --name` mysql-slow.log && \
         mv mysql-slow.log mysql-slow-`hostname`.log && \
         gzip mysql-slow-`hostname`.log
     ```
